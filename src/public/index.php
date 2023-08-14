@@ -1,4 +1,3 @@
 <?php
-declare(strict_types=1);
-
-echo 'It works !';
+include_once "inc/default.inc.php";
+?>

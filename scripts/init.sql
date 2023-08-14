@@ -1,2 +1,2 @@
-GRANT ALL PRIVILEGES ON `%`.* TO 'playground-user'@'%';
+GRANT ALL PRIVILEGES ON `%`.* TO 'NAS-admin'@'%';
 FLUSH PRIVILEGES;
