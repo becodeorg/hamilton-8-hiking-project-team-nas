@@ -1,10 +1,12 @@
 <?php
-namespace models;
+
+namespace App\Models;
 
 use PDO;
 use PDOStatement;
 
-class Database{
+class Database
+{
     private PDO $pdo;
     public function __construct()
     {
@@ -32,13 +34,16 @@ class Database{
 = int
 = bool
 = autre*/
-      if (gettype($value) == "integer") 
-      {
-        $stmt->bindParam($key, $value, PDO::PARAM_INT);
-    } else if (gettype($value) == "boolean") {$stmt->bindParam($key, $value, PDO::PARAM_BOOL);
-    } else {$stmt->bindValue($key, $value);}}
-  return $stmt->execute();
-}
+            if (gettype($value) == "integer") {
+                $stmt->bindParam($key, $value, PDO::PARAM_INT);
+            } else if (gettype($value) == "boolean") {
+                $stmt->bindParam($key, $value, PDO::PARAM_BOOL);
+            } else {
+                $stmt->bindValue($key, $value);
+            }
+        }
+        return $stmt->execute();
+    }
     /**
      * @param string $sql 
      * @param array $param
@@ -56,17 +61,17 @@ class Database{
         // bouclé sur le tableau parametre
         // $key => clé
         // $value => valeur des clés
-        foreach($param as $key => $value){
-            if (gettype($value) == 'integer'){
-            $stmt->bindParam($key, $value, PDO::PARAM_INT);
-            }else if (gettype($value) == "boolean"){
+        foreach ($param as $key => $value) {
+            if (gettype($value) == 'integer') {
+                $stmt->bindParam($key, $value, PDO::PARAM_INT);
+            } else if (gettype($value) == "boolean") {
                 $stmt->bindParam($key, $value, PDO::PARAM_BOOL);
-            }else {
+            } else {
                 $stmt->bindValue($key, $value);
             }
         }
-         $stmt->execute();
-         return $stmt;
+        $stmt->execute();
+        return $stmt;
     }
     /**
      * @return string
