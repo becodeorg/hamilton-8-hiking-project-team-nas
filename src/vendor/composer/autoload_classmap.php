@@ -11,7 +11,9 @@ return array(
     'Composer\\Autoload\\ComposerStaticInit0f2a37a3cd46a50b6e540f9cf1cb9409' => $vendorDir . '/composer/autoload_static.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'controllers\\AuthController' => $baseDir . '/controllers/AuthController.php',
+    'controllers\\ProductController' => $baseDir . '/controllers/ProductController.php',
     'core\\Router' => $baseDir . '/core/Router.php',
     'models\\Database' => $baseDir . '/models/Database.php',
+    'models\\Product' => $baseDir . '/models/Product.php',
     'models\\User' => $baseDir . '/models/User.php',
 );

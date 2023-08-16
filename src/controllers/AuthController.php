@@ -12,8 +12,9 @@ class AuthController extends User
      */
     public function showLoginForm(): void
     {
-        if (!empty($_GET['error_value'])){
-        $error_value = $_GET['error_value'];
+        
+    if (isset($_GET['error_value'])) {
+        $error_value = htmlspecialchars($_GET['error_value']);
     }
         include_once "views/layout/header.view.php";
         include_once "views/login.view.php";

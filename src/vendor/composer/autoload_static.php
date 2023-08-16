@@ -12,8 +12,10 @@ class ComposerStaticInit0f2a37a3cd46a50b6e540f9cf1cb9409
         'Composer\\Autoload\\ComposerStaticInit0f2a37a3cd46a50b6e540f9cf1cb9409' => __DIR__ . '/..' . '/composer/autoload_static.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'controllers\\AuthController' => __DIR__ . '/../..' . '/controllers/AuthController.php',
+        'controllers\\ProductController' => __DIR__ . '/../..' . '/controllers/ProductController.php',
         'core\\Router' => __DIR__ . '/../..' . '/core/Router.php',
         'models\\Database' => __DIR__ . '/../..' . '/models/Database.php',
+        'models\\Product' => __DIR__ . '/../..' . '/models/Product.php',
         'models\\User' => __DIR__ . '/../..' . '/models/User.php',
     );
 

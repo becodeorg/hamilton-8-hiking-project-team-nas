@@ -1,9 +1,7 @@
-<?php
-try{
-foreach ($names as $name) {
-        echo "<p>" . $name['name'] . "</p>";
-    }
-    echo "Connection complete";
-} catch (Exception $e) {
-    echo $e->getMessage();
-}
+<p>Salut ca dit quoi</p>
+<ul>
+<?php foreach ($names as $name):
+extract($name) ?>
+<li><a href="/name?id=<?= $id ?>"><?= $name ?></a></li>
+<?php endforeach; ?>
+</ul>

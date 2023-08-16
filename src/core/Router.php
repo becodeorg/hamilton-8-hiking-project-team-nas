@@ -11,6 +11,10 @@ class Router
         switch ($uri_path) {
             case "/":
             case "/index":
+            case "/home":
+                $productController = new ProductController();
+                $productController->showHome();
+                break;
             case "/login":
                 $authController = new AuthController();
                 if (empty($_POST)){
@@ -27,13 +31,13 @@ class Router
                     $authController->registerVerification($_POST);
                     }
                 break;
-            case "/register":
-                echo "";
-                break;
-             case "/logout":
+            case "/logout":
                 $authController = new AuthController();
                 $authController->logout();
                 break;
+            default:
+            echo "default";
+            break;
         }
     }
 }

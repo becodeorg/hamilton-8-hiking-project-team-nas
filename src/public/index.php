@@ -10,3 +10,5 @@ $_SERVER['REQUEST_URI'],
 PHP_URL_PATH
     )
 );
+?>
+<p>Salut Nicolas</p>
