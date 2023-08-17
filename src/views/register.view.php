@@ -23,7 +23,7 @@
         <p style="color: orangered;">This email is not valid.</p>
 
     <?php elseif ($error_value == "server"): ?>
-        <p style="color: orangered;">Server response with an eror. Try again later.</p>
+        <p style="color: orangered;">Server response with an error. Try again later.</p>
 
     <?php elseif ($error_value == "exist"): ?>
         <p style="color: orangered;">This user does exist.</p>
