@@ -50,51 +50,32 @@ class AuthController extends User
                 throw new Exception("102");
             }
 
-            $resultArray = User::insertNewUser(
+            $result = User::insertNewUser(
                 [
-                    "fistname" => $firstname,
+                    "firstname" => $firstname,
                     "lastname" => $lastname,
                     "nickname" => $nickname,
                     "email" => $email,
-                    "password" => password_hash($post['password'], PASSWORD_DEFAULT)
+                    "password" => $password_hash,
                 ]
-                );
-            if (!$resultArray["bool"]) {
+            );
+            if (!$result["bool"]) {
                 throw new Exception("500");
             }
-            unset($_SESSION['hamilton-8-NAS_user']);
 
-            $_SESSION['hamilton-8-NAS_user'] = array
-            (
-                "id" => $resultArray['id'],
+            unset($_SESSION['hamilton-8-NAS_user']);
+            $_SESSION['hamilton-8-NAS_user'] = array(
+                "uid" => $result["id"],
+                "firstname" => $firstname,
+                "lastname" => $lastname,
                 "nickname" => $nickname,
                 "email" => $email
             );
-            header('Location: /');
-        }catch (Exception $e){
-            $location = 'Location: /register?error_value=';
-            $msg = $e->getMessage();
-    
-            switch ($msg) {
-                case "101":
-                    $location .= 'nodata';
-                    break;
-                case "102":
-                    $location .= "exist";
-                    break;
-                case "201":
-                    $location .= "email";
-                    break;
-                case "500":
-                    $location .= "server";
-                    break;
-                default:
-                    header('Location: /error');
-                 }
-                 // $location => 'Location: /register?error_value={:nodata | :nodb | :email | :pwd}
-                 header($location);
-        }
 
+            header('Location: /');
+        } catch (Exception $e) {
+            header('Location: /register?error_value=' . $e->getMessage());
+        }
     }
     public function showRegisterForm()
     {
