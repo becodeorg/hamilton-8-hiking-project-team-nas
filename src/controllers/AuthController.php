@@ -12,9 +12,8 @@ class AuthController extends User
      */
     public function showLoginForm(): void
     {
-        
-    if (isset($_GET['error_value'])) {
-        $error_value = htmlspecialchars($_GET['error_value']);
+        if (!empty($_GET['error_value'])){
+        $error_value = $_GET['error_value'];
     }
         include_once "views/layout/header.view.php";
         include_once "views/login.view.php";
@@ -29,20 +28,21 @@ class AuthController extends User
             // 102 => si l'utilisateur existe dans la DB
             // 201 => si l'email n'est aps valide
             // 500 => erreur serveur
-            if (empty($post['username']) || empty($post['email']) || empty($post['password'])){
+            if (empty($post['firstname']) || empty($post['lastname']) || empty($post['nickname']) || empty($post['email']) || empty($post['password'])){
                 throw new Exception("101");
             }
-
-            $username = htmlspecialchars($post['username']);
+            $firstname = htmlspecialchars($post['firstname']);
+            $lastname = htmlspecialchars($post['lastname']);
+            $nickname = htmlspecialchars($post['nickname']);
 
             $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
-                throw new Exception("202");
+                throw new Exception("201");
             }
 
             $user = User::getUserByUsernameAndEmail(
                 [
-                    "username" => $username,
+                    "nickname" => $nickname,
                     "email" => $email
                 ]
             );
@@ -52,7 +52,9 @@ class AuthController extends User
 
             $resultArray = User::insertNewUser(
                 [
-                    "username" => $username,
+                    "fistname" => $firstname,
+                    "lastname" => $lastname,
+                    "nickname" => $nickname,
                     "email" => $email,
                     "password" => password_hash($post['password'], PASSWORD_DEFAULT)
                 ]
@@ -60,12 +62,12 @@ class AuthController extends User
             if (!$resultArray["bool"]) {
                 throw new Exception("500");
             }
-            unset($_SESSION['classicmodels_user']);
+            unset($_SESSION['hamilton-8-NAS_user']);
 
-            $_SESSION['classicmodels_user'] = array
+            $_SESSION['hamilton-8-NAS_user'] = array
             (
                 "id" => $resultArray['id'],
-                "username" => $username,
+                "nickname" => $nickname,
                 "email" => $email
             );
             header('Location: /');
@@ -105,7 +107,7 @@ class AuthController extends User
     }
     public function logout(): void
     {
-        unset($_SESSION['classicmodels_user']);
+        unset($_SESSION['hamilton-8-NAS_user']);
         header('Location: /');
     }
     public function loginVerification(array $post): void
@@ -135,10 +137,10 @@ class AuthController extends User
         if (!password_verify($post['password'], $user['password'])) {
             throw new exception("202");
         }
-        unset($_SESSION['classicmodels_user']);
-        $_SESSION['classicmodels_user'] = array(
+        unset($_SESSION['hamilton-8-NAS_user']);
+        $_SESSION['hamilton-8-NAS_user'] = array(
             "id" => $user['id'],
-            "username" => $user['username'],
+            "nickname" => $user['nickname'],
             "email" => $email
         );
 

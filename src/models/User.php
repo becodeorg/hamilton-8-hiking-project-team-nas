@@ -22,7 +22,7 @@ class User extends Database{
      */
     public function getUserByUsernameAndEmail(array $param): array|bool
     {
-        $sql = "SELECT * FROM users WHERE username = :username OR email = :email";
+        $sql = "SELECT * FROM users WHERE nickname = :nickname OR email = :email";
         $result = Database::query(
             $sql, 
             $param
@@ -31,7 +31,7 @@ class User extends Database{
     }
     public function insertNewUser(array $param): array 
     {
-        $sql = "INSERT INTO users (username, email, password) VALUES (:username, :email, :password)";
+        $sql = "INSERT INTO users (nickname, email, password) VALUES (:nickname, :email, :password)";
         $result = Database::exec(
             $sql,
             $param

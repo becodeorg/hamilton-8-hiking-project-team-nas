@@ -1,7 +1,13 @@
 <h1>Register</h1>
 <form action="#" method="post">
-    <label for="">Username</label>
-    <input type="text" name="username" id="username" placeholder="Your username..." required>
+<label for="">Firsname</label>
+    <input type="text" name="firstname" id="firstname" placeholder="Your firstname..." required>
+
+    <label for="">Lastname</label>
+    <input type="text" name="lastname" id="lastname" placeholder="Your lastname..." required>
+
+    <label for="">Nickname</label>
+    <input type="text" name="nickname" id="nickname" placeholder="Your nickname..." required>
 
     <label for="">Email</label>
     <input type="text" name="email" id="email" placeholder="Your email..." required>
