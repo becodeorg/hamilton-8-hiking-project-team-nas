@@ -29,19 +29,6 @@ class User extends Database{
     );
     return $result->fetch();
     }
-    // public function insertNewUser(array $param): array 
-    // {
-    //     $sql = "INSERT INTO users (nickname, email, password) VALUES (:nickname, :email, :password)";
-    //     $result = Database::exec(
-    //         $sql,
-    //         $param
-    //     );
-    //     $id = Database::lastInsertId();
-    //     return [
-    //         "bool" => $result, 
-    //         "id" => $id
-    //     ];
-    // }
     public function insertNewUser(array $param): array|bool
     {
         $sql = "INSERT INTO users
