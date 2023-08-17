@@ -1,4 +1,3 @@
-<p>Salut ca dit quoi</p>
 <ul>
 <?php foreach ($names as $name):
 extract($name) ?>

@@ -11,4 +11,3 @@ PHP_URL_PATH
     )
 );
 ?>
-<p>Salut Nicolas</p>

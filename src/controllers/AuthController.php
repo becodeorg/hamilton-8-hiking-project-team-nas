@@ -39,6 +39,7 @@ class AuthController extends User
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
                 throw new Exception("201");
             }
+            $password_hash = password_hash($post['password'], PASSWORD_DEFAULT);
 
             $user = User::getUserByUsernameAndEmail(
                 [
@@ -56,7 +57,7 @@ class AuthController extends User
                     "lastname" => $lastname,
                     "nickname" => $nickname,
                     "email" => $email,
-                    "password" => $password_hash,
+                    "password" => $password_hash
                 ]
             );
             if (!$result["bool"]) {
@@ -65,7 +66,7 @@ class AuthController extends User
 
             unset($_SESSION['hamilton-8-NAS_user']);
             $_SESSION['hamilton-8-NAS_user'] = array(
-                "uid" => $result["id"],
+                "id" => $result["id"],
                 "firstname" => $firstname,
                 "lastname" => $lastname,
                 "nickname" => $nickname,
@@ -79,8 +80,8 @@ class AuthController extends User
     }
     public function showRegisterForm()
     {
-        if (!empty($_GET['error_value'])){
-            $error_value = $_GET['error_value'];
+        if (isset($_GET['error_value'])) {
+            $error_value = htmlspecialchars($_GET['error_value']);
         }
             include_once "views/layout/header.view.php";
             include_once "views/register.view.php";
