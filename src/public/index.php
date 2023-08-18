@@ -1,34 +1,14 @@
 <?php
 
-declare(strict_types=1);
+include_once "app/inc/default.inc.php";
+require_once "vendor/autoload.php";
 
-require_once 'vendor/autoload.php';
+use Core\Router;
 
-use App\Controllers\HikeController;
-use App\Controllers\PageController;
-
-session_start();
-
-try {
-    $url_path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), "/");
-    $method = $_SERVER['REQUEST_METHOD']; // GET -- POST
-
-    switch ($url_path) {
-        case "":
-        case "/index.php":
-            $hikeController = new HikeController();
-            $hikeController->showHikeList();
-            break;
-        case "hike":
-            if (empty($_GET['hikeId'])) throw new Exception("Please provide a hike ID");
-            $hikeController = new HikeController();
-            $hikeController->showOneHike($_GET['hikeId']);
-            break;
-        default:
-            $pageController = new PageController();
-            $pageController->page_404();
-    }
-} catch (Exception $e) {
-    $pageController = new PageController();
-    $pageController->page_500($e->getMessage());
-}
+$router = new Router();
+$router->route(
+    parse_url(
+        $_SERVER['REQUEST_URI'],
+        PHP_URL_PATH
+    )
+);

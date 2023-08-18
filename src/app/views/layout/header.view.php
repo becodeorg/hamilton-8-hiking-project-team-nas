@@ -10,22 +10,19 @@
 </head>
 
 <header>
-    <ul class="nav justify-content-end">
-        <?php if (!empty($_SESSION['user'])) : ?>
-            <li class="nav-item">
-                <span class="nav-link">Bonjour <?= $_SESSION['user']['username'] ?></span>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/logout">Logout</a>
-            </li>
-        <?php else : ?>
-            <li class="nav-item">
-                <a class="nav-link" href="/login">Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/register">Register</a>
-            </li>
-        <?php endif; ?>
-    </ul>
+    <nav>
+        <ul>
+            <li><a href="/"><strong>Hiking's life</strong></a></li>
+        </ul>
+        <ul>
+            <?php if (isset($_SESSION['hamilton-8-NAS_user'])) : ?>
+                <li>Bonjour <?= $_SESSION['hamilton-8-NAS_user']['nickname'] ?></li>
+                <li><a href="/logout">Logout</a></li>
+            <?php else : ?>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Register</a></li>
+            <?php endif; ?>
+        </ul>
+    </nav>
 </header>
 <main class="container">
