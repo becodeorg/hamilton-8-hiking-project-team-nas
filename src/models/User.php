@@ -41,4 +41,28 @@ class User extends Database{
             "uid" => Database::lastInsertId()
         ];
     }
+    public function getHikeByUserId(string|int $id): array|bool
+    {
+        $sql = "SELECT * FROM Hikes WHERE id = :id";
+        $result = Database::query($sql, ["id" => $id]);
+        return $result->fetchAll();
+    }
+
+    public function updateUserFirstnameAndLastname(array $param): bool
+    {
+        $sql = "UPDATE users SET firstname = :firstname AND lastname = :lastname WHERE id = :id";
+        return Database::exec($sql, $param);
+    }
+
+    public function updateUserFirstname(array $param): bool
+    {
+        $sql = "UPDATE users SET firstname = :firstname WHERE id = :id";
+        return Database::exec($sql, $param);
+    }
+
+    public function updateUserLastname(array $param): bool
+    {
+        $sql = "UPDATE users SET lastname = :lastname WHERE id = :id";
+        return Database::exec($sql, $param);
+    }
 }
