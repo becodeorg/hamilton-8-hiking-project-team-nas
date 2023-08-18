@@ -2,4 +2,3 @@
 ./dbdata
 .env
 node_modules
-src/vendor
