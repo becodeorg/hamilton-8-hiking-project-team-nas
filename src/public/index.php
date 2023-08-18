@@ -2,10 +2,12 @@
 
 declare(strict_types=1);
 
-session_start();
+require_once 'vendor/autoload.php';
 
 use App\Controllers\HikeController;
 use App\Controllers\PageController;
+
+session_start();
 
 try {
     $url_path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), "/");

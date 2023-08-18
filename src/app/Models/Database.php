@@ -44,35 +44,21 @@ class Database
         }
         return $stmt->execute();
     }
+
     /**
      * @param string $sql 
      * @param array $param
      * 
      * @return PDOStatement
      */
-    public function query(string $sql, array $param = []): PDOStatement
+    public function query(string $query, array $params = []): PDOStatement
     {
-        // prépare la requête
-        $stmt = $this->pdo->prepare($sql);
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute($params);
 
-
-
-        //bind les paramètres
-        // bouclé sur le tableau parametre
-        // $key => clé
-        // $value => valeur des clés
-        foreach ($param as $key => $value) {
-            if (gettype($value) == 'integer') {
-                $stmt->bindParam($key, $value, PDO::PARAM_INT);
-            } else if (gettype($value) == "boolean") {
-                $stmt->bindParam($key, $value, PDO::PARAM_BOOL);
-            } else {
-                $stmt->bindValue($key, $value);
-            }
-        }
-        $stmt->execute();
         return $stmt;
     }
+
     /**
      * @return string
      */

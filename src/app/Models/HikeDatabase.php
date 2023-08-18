@@ -23,8 +23,10 @@ class HikeDatabase extends Database
 
     public function find(string $hikeId): array|false
     {
+        $sql = "SELECT * FROM hikes WHERE ID = ?";
+
         $stmt = $this->query(
-            "SELECT * FROM hikes WHERE ID = ?",
+            $sql,
             [$hikeId]
         );
         return $stmt->fetch(PDO::FETCH_ASSOC);
