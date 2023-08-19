@@ -27,7 +27,7 @@
                 <li class="card">
                     <img src="<?= $image_url ?>" alt="photo-rando">
                     <div>
-                        <h4><a href="/hike?hikeid=<?= $id ?>"><?= $name ?></a></h4>
+                        <h4><a href="/hike?hikeId=<?= $hike['ID'] ?>"><?= $hike['name'] ?></a></h4>
                         <p><?= $distance ?> km</p>
                         <p><?= $duration ?></p>
                         <a href="/profile?id=<?= $id ?>"><?= $nickname ?></a>

@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use Exception;
 use App\Models\User;
+use App\Controllers\HikeController;
 
 class AuthController extends User
 {
@@ -19,6 +20,11 @@ class AuthController extends User
         include_once "app/views/login.view.php";
         include_once "app/views/layout/footer.view.php";
     }
+    /**
+     * @param array $post
+     * 
+     * @return void
+     */
     public function registerVerification(array $post): void
     {
         try {
@@ -78,6 +84,9 @@ class AuthController extends User
             header('Location: /register?error_value=' . $e->getMessage());
         }
     }
+    /**
+     * @return [type]
+     */
     public function showRegisterForm()
     {
         if (isset($_GET['error_value'])) {
@@ -87,11 +96,19 @@ class AuthController extends User
         include_once "app/views/register.view.php";
         include_once "app/views/layout/footer.view.php";
     }
+    /**
+     * @return void
+     */
     public function logout(): void
     {
         unset($_SESSION['hamilton-8-NAS_user']);
         header('Location: /');
     }
+    /**
+     * @param array $post
+     * 
+     * @return void
+     */
     public function loginVerification(array $post): void
     {
         try {
