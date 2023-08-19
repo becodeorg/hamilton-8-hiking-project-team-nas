@@ -50,12 +50,13 @@ class Router
                     if (isset($_SESSION['hamilton-8-NAS_user'])) {
                         if (empty($_GET)) {
                             $authController->showUserProfile($_SESSION['hamilton-8-NAS_user']['id']);
-                                                } else {
+                        } else {
                             $authController->showUserProfile(htmlspecialchars($_GET['id']));
                             }
                     } else {
                         header('Location: /login?error_value=601');
                         }
+                    break;
                 default:
                     $pageController = new PageController();
                     $pageController->page_404();
