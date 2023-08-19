@@ -151,4 +151,17 @@ class AuthController extends User
             header($location);
         }
     }
+    public function showUserProfile(string|int $id): void
+    {
+        $user = User::getUserById($id);
+        if ($_SESSION['hamilton-8-NAS_user']['id'] == '1' && !isset($_GET['id'])) {
+            $hikes = (new Hike())->getAllHike();
+        } else {
+            $hikes = User::getHikeByUserId($id);
+        }
+
+        include_once "app/views/layout/header.view.php";
+        include_once "app/views/profile.view.php";
+        include_once "app/views/layout/footer.view.php";
+    }
 }

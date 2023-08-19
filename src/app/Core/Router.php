@@ -45,6 +45,17 @@ class Router
                     $hikeController = new HikeController();
                     $hikeController->showOneHike($_GET['hikeId']);
                     break;
+                case "/profile":
+                    $authController = new AuthController();
+                    if (isset($_SESSION['hamilton-8-NAS_user'])) {
+                        if (empty($_GET)) {
+                            $authController->showUserProfile($_SESSION['hamilton-8-NAS_user']['id']);
+                                                } else {
+                            $authController->showUserProfile(htmlspecialchars($_GET['id']));
+                            }
+                    } else {
+                        header('Location: /login?error_value=601');
+                        }
                 default:
                     $pageController = new PageController();
                     $pageController->page_404();
