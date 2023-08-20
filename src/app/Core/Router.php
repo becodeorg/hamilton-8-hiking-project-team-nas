@@ -45,6 +45,12 @@ class Router
                     $hikeController = new HikeController();
                     $hikeController->showOneHike($_GET['hikeId']);
                     break;
+                case "/addhike":
+                    $hikeController = new HikeController();
+                    if ($method === "GET") $hikeController->showAddHikeForm();
+
+                    if ($method === "POST") $hikeController->addHike($_SESSION['user']['id'],$_POST['hikename'],$_POST['distance'],$_POST['duration'],$_POST['elevation_gain'], $_POST['description']);
+                    break;
                 default:
                     $pageController = new PageController();
                     $pageController->page_404();
