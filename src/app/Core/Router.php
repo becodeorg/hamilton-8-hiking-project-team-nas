@@ -45,6 +45,7 @@ class Router
                     $hikeController = new HikeController();
                     $hikeController->showOneHike($_GET['hikeId']);
                     break;
+                    //TODO case tag
                 default:
                     $pageController = new PageController();
                     $pageController->page_404();

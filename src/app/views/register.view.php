@@ -1,31 +1,41 @@
 <h1>Register</h1>
+
 <form action="#" method="post">
-<label for="">Firsname</label>
-    <input type="text" name="firstname" id="firstname" placeholder="Your firstname..." required>
+    <div class="mb-3">
+        <label for="firstname" class="form-label">Firstname</label>
+        <input type="text" class="form-control" id="firstname" aria-describedby="firstnameHelp" placeholder="Your firstname..." required>
+    </div>
+    <div class="mb-3">
+        <label for="lastname" class="form-label">Lastname</label>
+        <input type="text" class="form-control" id="lastname" aria-describedby="lastnameHelp" placeholder="Your lastname..." required>
+    </div>
+    <div class="mb-3">
+        <label for="nickname" class="form-label">Nickname</label>
+        <input type="text" class="form-control" id="nickname" aria-describedby="nicknameHelp" placeholder="Your nickname..." required>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your nickname..." required>
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Your password..." required>
+    </div>
 
-    <label for="">Lastname</label>
-    <input type="text" name="lastname" id="lastname" placeholder="Your lastname..." required>
-
-    <label for="">Nickname</label>
-    <input type="text" name="nickname" id="nickname" placeholder="Your nickname..." required>
-
-    <label for="">Email</label>
-    <input type="text" name="email" id="email" placeholder="Your email..." required>
-
-    <label for="">Password</label>
-    <input type="password" name="password" id="password" placeholder="Your password..." required>
-    <button type="submit">Submit</button>
+    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-<?php if (isset($error_value)): ?>
-    <?php if ($error_value == "nodata"): ?>
+
+<?php if (isset($error_value)) : ?>
+    <?php if ($error_value == "nodata") : ?>
         <p style="color: orangered;">Please, fill the field with your information.</p>
-    <?php elseif ($error_value == "email"): ?>
+    <?php elseif ($error_value == "email") : ?>
         <p style="color: orangered;">This email is not valid.</p>
 
-    <?php elseif ($error_value == "server"): ?>
+    <?php elseif ($error_value == "server") : ?>
         <p style="color: orangered;">Server response with an error. Try again later.</p>
 
-    <?php elseif ($error_value == "exist"): ?>
+    <?php elseif ($error_value == "exist") : ?>
         <p style="color: orangered;">This user does exist.</p>
 
     <?php endif; ?>

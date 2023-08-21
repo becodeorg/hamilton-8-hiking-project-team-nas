@@ -10,7 +10,7 @@ class TagDatabase extends Database
 {
     public function findAll(string $hikeId): array
     {
-        $sql = "SELECT name FROM tags
+        $sql = "SELECT * FROM tags
         LEFT JOIN hikes_tags ON hikes_tags.tag_id = tags.ID
         WHERE hikes_tags.hike_id = ?";
 

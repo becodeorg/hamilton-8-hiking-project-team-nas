@@ -1,6 +1,7 @@
 </main>
 <footer>
     <p>Hiking project© Team NAS</p>
-</footer>  
+</footer>
 </body>
+
 </html>

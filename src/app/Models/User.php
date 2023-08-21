@@ -18,6 +18,12 @@ class User extends Database
         );
         return $result->fetch();
     }
+    public function getUserById(string|int $id): array|bool
+    {
+        $sql = "SELECT * FROM users WHERE id = :id";
+        $result = Database::query($sql, ["id" => $id]);
+        return $result->fetch();
+    }
     /**
      * @param array $param
      * 
@@ -41,12 +47,12 @@ class User extends Database
         $result = Database::exec($sql, $param);
         return [
             "bool" => $result,
-            "uid" => Database::lastInsertId()
+            "id" => Database::lastInsertId()
         ];
     }
     public function getHikeByUserId(string|int $id): array|bool
     {
-        $sql = "SELECT * FROM Hikes WHERE id = :id";
+        $sql = "SELECT * FROM hikes WHERE id = :id";
         $result = Database::query($sql, ["id" => $id]);
         return $result->fetchAll();
     }
