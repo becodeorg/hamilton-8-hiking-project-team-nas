@@ -1,4 +1,4 @@
-<h2 class="py-4">Hike's List</h2>
+<h1 class="py-4">Hike's List</h1>
 <style>
     .card>img {
         width: 100%;

@@ -1,4 +1,4 @@
-<h1>Login</h1>
+<h1 class="py-4">Login</h1>
 <form action="#" method="post">
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Email address</label>

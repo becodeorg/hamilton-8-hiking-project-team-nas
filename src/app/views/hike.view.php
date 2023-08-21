@@ -1,10 +1,20 @@
-<div class="card" style="width: 18rem;">
-    <h2> <?= $hike['name'] ?> </h2>
+<div class="card p-4 my-4">
+    <h1> <?= $hike['name'] ?> </h1>
+    <p class="fw-lighter">Created on
+        <?php $timestamp = strtotime($hike['created_at']);
+        $formatedDate = date("d/m/Y", $timestamp);
+        echo $formatedDate; ?>, last update on
+        <?php $timestamp = strtotime($hike['updated_at']);
+        $formatedDate = date("d/m/Y", $timestamp);
+        echo $formatedDate;
+        ?>
+    </p>
 
-    <h4> Distance </h4>
+
+    <h4 class="mt-4"> Distance </h4>
     <p class="card-text"> <?= $hike['distance'] ?> km</p>
 
-    <h4> Duration </h4>
+    <h4 class="mt-4"> Duration </h4>
     <p class="card-text">
         <?php
         list($hours, $minutes, $seconds) = explode(':', $hike['duration']);
@@ -13,34 +23,31 @@
         ?>
     </p>
 
-    <h4> Elevation Gain </h4>
+    <h4 class="mt-4"> Elevation Gain </h4>
     <p class="card-text"> <?= $hike['elevation_gain'] ?> m</p>
 
-    <h4> Description </h4>
+    <h4 class="mt-4"> Description </h4>
     <p class="card-text"> <?= $hike['description'] ?></p>
 
-    <h4> Created at </h4>
-    <p class="card-text"> <?php $timestamp = strtotime($hike['created_at']);
-                            $formatedDate = date("d/m/Y", $timestamp);
-                            echo $formatedDate; ?></p>
+    <div class="mb-4">
+        <?php if (empty($hike['image'])) : ?>
+            <img src="/assets/default.jpg" class="img-thumbnail card-img-top h-200">
+        <?php else : ?>
+            <img src="<?= $hike['image'] ?>" class="img-thumbnail card-img-top h-200">
+        <?php endif; ?>
+    </div>
 
-    <h4> Last Update</h4>
-    <p class="card-text"> <?php $timestamp = strtotime($hike['updated_at']);
-                            $formatedDate = date("d/m/Y", $timestamp);
-                            echo $formatedDate;
-                            ?></p>
-
-    <h4> Tags </h4>
     <?php if (!empty($tags)) : ?>
-        <ul>
+
+        <p>
             <?php foreach ($tags as $tag) : ?>
-                <p>
-                    <a href="/tag?tagId=<?= $tag['ID'] ?>">
-                        <p class="card-link"><?= $tag['name'] ?>
-                    </a>
-                </p>
+
+                <a href="/tag?tagId=<?= $tag['ID'] ?>" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+                    <?= $tag['name'] ?>
+                </a>&nbsp;
+
             <?php endforeach; ?>
-        </ul>
+        </p>
     <?php endif; ?>
 </div>
-<a role=" button" href="/">Go back home !</a>
+<a role="button" class="btn btn-secondary" href="/">Go back home !</a>
