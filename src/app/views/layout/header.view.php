@@ -20,8 +20,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <?php if (isset($_SESSION['hamilton-8-NAS_user'])) : ?>
-                        <li>Bonjour <?= $_SESSION['hamilton-8-NAS_user']['nickname'] ?></li>
-                        <li>
+                        <li><a href="/profile">Bonjour <?= $_SESSION['hamilton-8-NAS_user']['nickname'] ?> !</a></li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/logout">Logout</a>
                         </li>

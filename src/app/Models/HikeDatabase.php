@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Models;
 
 use PDO;
@@ -30,5 +28,11 @@ class HikeDatabase extends Database
             [$hikeId]
         );
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    public function getAllHike(): array|bool
+    {
+        $sql = "SELECT hikes.*, users.nickname FROM hikes JOIN users ON hikes.id = users.id";
+        $result = Database::query($sql);
+        return $result->fetchAll();
     }
 }
