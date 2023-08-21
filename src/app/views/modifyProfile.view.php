@@ -1,4 +1,4 @@
-<h1>Modifier mes données</h1>
+<h1>Modify my data</h1>
 <form action="/modify?value=account" method="post">
         <label for="firstname">Firstname</label>
         <input type="text" name="firstname" id="firstname" value="<?= $_SESSION['hamilton-8-NAS_user']['firstname'] ?>" placeholder="Prénom..." required>
