@@ -25,7 +25,6 @@
             foreach ($hikes as $hike):
                 extract($hike); ?>
                 <li class="card">
-                    <img src="<?= $image_url ?>" alt="photo-rando">
                     <div>
                         <h4><a href="/hike?hikeId=<?= $hike['ID'] ?>"><?= $hike['name'] ?></a></h4>
                         <p><?= $distance ?> km</p>
