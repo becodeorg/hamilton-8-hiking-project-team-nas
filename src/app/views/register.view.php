@@ -24,7 +24,7 @@
         <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Your password..." required>
     </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-secondary">Submit</button>
 </form>
 
 <?php if (isset($error_value)) : ?>
