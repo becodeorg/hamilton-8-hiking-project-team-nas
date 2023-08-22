@@ -27,6 +27,8 @@ class AuthController extends User
      */
     public function registerVerification(array $post): void
     {
+
+        print_r("ok");
         try {
             // check l'inscription d'un utilisateur
             // check si les champs ne sont pas vide
@@ -53,6 +55,7 @@ class AuthController extends User
                     "email" => $email
                 ]
             );
+            print_r("ok");
             if (!empty($user)) {
                 throw new Exception("102");
             }
@@ -71,6 +74,7 @@ class AuthController extends User
             }
 
             unset($_SESSION['hamilton-8-NAS_user']);
+
             $_SESSION['hamilton-8-NAS_user'] = array(
                 "id" => $result["id"],
                 "firstname" => $firstname,
