@@ -142,7 +142,9 @@ class AuthController extends User
             }
             unset($_SESSION['hamilton-8-NAS_user']);
             $_SESSION['hamilton-8-NAS_user'] = array(
-                "id" => $user['id'],
+                "id" => $user['ID'],
+                "firstname" => $user['firstname'],
+                "lastname" => $user['lastname'],
                 "nickname" => $user['nickname'],
                 "email" => $email
             );
