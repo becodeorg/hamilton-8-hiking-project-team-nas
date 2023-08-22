@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use Exception;
 use App\Models\User;
-use App\Controllers\HikeController;
+use App\Models\HikeDatabase;
 
 class AuthController extends User
 {
@@ -142,7 +142,7 @@ class AuthController extends User
             }
             unset($_SESSION['hamilton-8-NAS_user']);
             $_SESSION['hamilton-8-NAS_user'] = array(
-                "id" => $user['id'],
+                "id" => $user['ID'],
                 "nickname" => $user['nickname'],
                 "email" => $email
             );
@@ -176,7 +176,7 @@ class AuthController extends User
     {
         $user = User::getUserById($id);
         if ($_SESSION['hamilton-8-NAS_user']['id'] == '1' && !isset($_GET['id'])) {
-            $hikes = (new Hike())->getAllHike();
+            $hikes = (new HikeDatabase())->getAllHike();
         } else {
             $hikes = User::getHikeByUserId($id);
         }

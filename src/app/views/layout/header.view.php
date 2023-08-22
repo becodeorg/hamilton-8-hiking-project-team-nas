@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/src/public/assets/favicon.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <title>Hiking's Life</title>
 </head>
 
@@ -20,12 +21,9 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <?php if (isset($_SESSION['hamilton-8-NAS_user'])) : ?>
-                        <li><a href="/profile">Bonjour <?= $_SESSION['hamilton-8-NAS_user']['nickname'] ?> !</a></li>
+                        <li><a class="nav-link active" aria-current="page" href="/profile">Bonjour <?= $_SESSION['hamilton-8-NAS_user']['nickname'] ?> !</a></li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/logout">Logout</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/register">Register</a>
                         </li>
                     <?php else : ?>
                         <li class="nav-item">
