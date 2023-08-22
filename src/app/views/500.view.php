@@ -2,4 +2,6 @@
 <?php if (!empty($error)) : ?>
     <p><?= $error ?></p>
 <?php endif; ?>
-<a role="button" href="/">Go back home !</a>
+<div class="py-4">
+    <a role="button" class="btn btn-secondary" href="/">Go back home !</a>
+</div>

@@ -39,7 +39,7 @@
     else : ?>
         <a href="/creation" role="button" class="btn btn-secondary">You haven't created any hikes</a>
     <?php endif; ?>
-    <p class="py-4">
+    <div class="py-4">
         <a role="button" class="btn btn-secondary" href="/">Go back home !</a>
-    </p>
+    </div>
 </section>

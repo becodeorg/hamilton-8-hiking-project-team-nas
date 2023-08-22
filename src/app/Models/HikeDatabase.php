@@ -29,6 +29,21 @@ class HikeDatabase extends Database
         );
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    public function findHikesForTag(string $tagId): array
+    {
+        $sql = "SELECT hikes.* FROM hikes
+    LEFT JOIN hikes_tags ON hikes_tags.hike_id = hikes.ID
+    WHERE hikes_tags.tag_id = ?";
+
+        $stmt = $this->query(
+            $sql,
+            [$tagId]
+        );
+
+        $hikes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $hikes;
+    }
     public function getAllHike(): array|bool
     {
         $sql = "SELECT hikes.*, users.nickname FROM hikes JOIN users ON hikes.id = users.id";

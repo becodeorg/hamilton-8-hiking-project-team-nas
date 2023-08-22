@@ -5,6 +5,7 @@ namespace Core;
 use App\Controllers\AuthController;
 use App\Controllers\HikeController;
 use App\Controllers\PageController;
+use App\Controllers\TagController;
 use Exception;
 
 class Router
@@ -45,6 +46,11 @@ class Router
                     $hikeController = new HikeController();
                     $hikeController->showOneHike($_GET['hikeId']);
                     break;
+                case "/tag":
+                    if (empty($_GET['tagId'])) throw new Exception("Please provide a tag ID");
+                    $tagController = new TagController();
+                    $tagController->showHikesPerTag($_GET['tagId']);
+                    break;
                 case "/profile":
                     $authController = new AuthController();
                     if (isset($_SESSION['hamilton-8-NAS_user'])) {
@@ -57,23 +63,23 @@ class Router
                         header('Location: /login?error_value=601');
                     }
                     break;
-                    case "/modify":
-                        if (!empty($_GET)) {
-                            if ($_GET['value'] == "account") {
-                                $authController = new AuthController();
-                                if (empty($_POST)) {
-                                    $authController->showUpdateProfile();
-                                } else {
-                                    $authController->updateProfileVerification($_POST);
-                                }
+                case "/modify":
+                    if (!empty($_GET)) {
+                        if ($_GET['value'] == "account") {
+                            $authController = new AuthController();
+                            if (empty($_POST)) {
+                                $authController->showUpdateProfile();
+                            } else {
+                                $authController->updateProfileVerification($_POST);
                             }
                         }
-                        break;
+                    }
+                    break;
 
-                    default:
-                        $pageController = new PageController();
-                        $pageController->page_404();
-                        break;    
+                default:
+                    $pageController = new PageController();
+                    $pageController->page_404();
+                    break;
             }
         } catch (Exception $e) {
             $pageController = new PageController();
