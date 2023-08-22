@@ -143,6 +143,8 @@ class AuthController extends User
             unset($_SESSION['hamilton-8-NAS_user']);
             $_SESSION['hamilton-8-NAS_user'] = array(
                 "id" => $user['ID'],
+                "firstname" => $user['firstname'],
+                "lastname" => $user['lastname'],
                 "nickname" => $user['nickname'],
                 "email" => $email
             );
@@ -184,5 +186,80 @@ class AuthController extends User
         include_once "app/views/layout/header.view.php";
         include_once "app/views/profile.view.php";
         include_once "app/views/layout/footer.view.php";
+    }
+    public function showUpdateProfile(): void
+    {
+        if (isset($_GET['error_value'])) {
+            $error_value = htmlspecialchars($_GET['error_value']);
+        }
+        if (isset($_GET['modify'])) {
+            $modify = htmlspecialchars($_GET['modify']);
+        }
+        include_once "app/views/layout/header.view.php";
+        include_once "app/views/modifyProfile.view.php";
+        include_once "app/views/layout/footer.view.php";
+    }
+
+    public function updateProfileVerification(array $post): void
+    {
+        try {
+            if (
+                empty($post['firstname']) ||
+                empty($post['lastname']) ||
+                empty($post['password'])
+            ) {
+                throw new Exception("101");
+            }
+
+            $firstname = htmlspecialchars($post['firstname']);
+            $lastname = htmlspecialchars($post['lastname']);
+
+            $user = User::getUserById($_SESSION['hamilton-8-NAS_user']['id']);
+            if (!$user) {
+                throw new Exception("500");
+            }
+            if ($firstname != $user['firstname']) {
+                if ($lastname != $user['lastname']) {
+                    $result = User::updateUserFirstnameAndLastname(
+                        [
+                            "firstname" => $firstname,
+                            "lastname" => $lastname,
+                            "id" => $_SESSION['hamilton-8-NAS_user']['id']
+                        ]
+                    );
+                }
+            } else {
+                if ($lastname != $user['lastname']) {
+                    $result = User::updateUserLastname(
+                        [
+                            "lastname" => $lastname,
+                            "id" => $_SESSION['hamilton-8-NAS_user']['id']
+                        ]
+                    );
+                } else {
+                    throw new Exception("301");
+                }
+            }
+
+            if (!password_verify($post['password'], $user['password'])) {
+                throw new Exception("202");
+            }
+            if (!$result) {
+                throw new Exception("500");
+            }
+
+            unset($_SESSION['hamilton-8-NAS_user']);
+            $_SESSION['hamilton-8-NAS_user'] = array(
+                "id" => $user['ID'],
+                "nickname" => $user['nickname'],
+                "firstname" => $firstname,
+                "lastname" => $lastname,
+                "email" => $user['email']
+            );
+
+            header('Location: /modify?value=account&modify=true');
+        } catch (Exception $e) {
+            header('Location: /modify?value=account&error_value=' . $e->getMessage());
+        }
     }
 }
