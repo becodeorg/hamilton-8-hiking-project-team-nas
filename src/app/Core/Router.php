@@ -16,7 +16,7 @@ class Router
                 case "/":
                 case "/index":
                 case "/home":
-                case "/index.php":
+                case "/index":
                     $hikeController = new HikeController();
                     $hikeController->showHikeList();
                     break;
