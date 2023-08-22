@@ -59,7 +59,7 @@ class User extends Database
 
     public function updateUserFirstnameAndLastname(array $param): bool
     {
-        $sql = "UPDATE users SET firstname = :firstname AND lastname = :lastname WHERE id = :id";
+        $sql = "UPDATE users SET firstname = :firstname, lastname = :lastname WHERE id = :id";
         return Database::exec($sql, $param);
     }
 

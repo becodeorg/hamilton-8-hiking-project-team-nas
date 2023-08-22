@@ -57,10 +57,23 @@ class Router
                         header('Location: /login?error_value=601');
                     }
                     break;
-                default:
-                    $pageController = new PageController();
-                    $pageController->page_404();
-                    break;
+                    case "/modify":
+                        if (!empty($_GET)) {
+                            if ($_GET['value'] == "account") {
+                                $authController = new AuthController();
+                                if (empty($_POST)) {
+                                    $authController->showUpdateProfile();
+                                } else {
+                                    $authController->updateProfileVerification($_POST);
+                                }
+                            }
+                        }
+                        break;
+
+                    default:
+                        $pageController = new PageController();
+                        $pageController->page_404();
+                        break;    
             }
         } catch (Exception $e) {
             $pageController = new PageController();
